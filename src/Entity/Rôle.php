@@ -5,44 +5,39 @@ namespace App\Entity;
 use App\Repository\RôleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RôleRepository::class)]
+#[ORM\Entity]
 class Rôle
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: "integer")]
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    private int $idRole;
 
-    #[ORM\Column(type: "string", length: 50)]
-    private ?string $nom = null;
+    #[ORM\Column(type: 'string', length: 50)]
+    private string $nomRole;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private ?string $description = null;
-
-    public function getId(): ?int
+    // Getters and setters
+    public function getIdRole(): int
     {
-        return $this->id;
+        return $this->idRole;
     }
 
-    public function getNom(): ?string
+    public function getNomRole(): string
     {
-        return $this->nom;
+        return $this->nomRole;
     }
 
-    public function setNom(string $nom): self
+    public function setNomRole(string $nomRole): self
     {
-        $this->nom = $nom;
+        $this->nomRole = $nomRole;
         return $this;
     }
 
-    public function getDescription(): ?string
+    // Methods
+    public function attribuerRole(): void
     {
-        return $this->description;
+        // Logic for assigning a role
+        // Implement role assignment logic as needed
     }
 
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-        return $this;
-    }
 }

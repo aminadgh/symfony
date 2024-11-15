@@ -23,13 +23,13 @@ class Message
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $expéditeur = null;
 
-    #[ORM\ManyToOne(targetEntity: Utilisateur::class, nullable: true)]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Utilisateur $destinataireUtilisateur = null;
+    #[ORM\ManyToOne(targetEntity: Utilisateur::class)]
+ #[ORM\JoinColumn(nullable: true)]
+ private ?Utilisateur $destinataireUtilisateur = null;
 
-    #[ORM\ManyToOne(targetEntity: GrpCommunication::class, nullable: true)]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?GrpCommunication $destinataireGroupe = null;
+ #[ORM\ManyToOne(targetEntity: GrpCommunication::class)]
+ #[ORM\JoinColumn(nullable: true)]
+ private ?GrpCommunication $destinataireGroupe = null;
 
     public function getId(): ?int
     {

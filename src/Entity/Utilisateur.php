@@ -5,42 +5,36 @@ namespace App\Entity;
 use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
+#[ORM\Entity]
 class Utilisateur
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: "integer")]
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    private int $idUtilisateur;
 
-    #[ORM\Column(type: "string", length: 100)]
-    private ?string $nom = null;
+    #[ORM\Column(type: 'string', length: 50)]
+    private string $nom;
 
-    #[ORM\Column(type: "string", length: 100)]
-    private ?string $prenom = null;
+    #[ORM\Column(type: 'string', length: 50)]
+    private string $prenom;
 
-    #[ORM\Column(type: "string", length: 255, unique: true)]
-    private ?string $email = null;
+    #[ORM\Column(type: 'string', length: 100, unique: true)]
+    private string $email;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private ?string $motDePasse = null;
+    #[ORM\Column(type: 'string')]
+    private string $motDePasse;
 
-    #[ORM\ManyToOne(targetEntity: Rôle::class)]
-    #[ORM\JoinColumn(name: "role_id", referencedColumnName: "id")]
-    private ?Rôle $role = null;
+    #[ORM\Column(type: 'date')]
+    private \DateTime $dateInscription;
 
-    #[ORM\Column(type: "datetime")]
-    private ?\DateTimeInterface $dateInscription = null;
-
-    #[ORM\Column(type: "string", length: 20)]
-    private ?string $statut = 'actif'; // Par défaut, l'utilisateur est actif
-
-    public function getId(): ?int
+    // Getters and setters
+    public function getIdUtilisateur(): int
     {
-        return $this->id;
+        return $this->idUtilisateur;
     }
 
-    public function getNom(): ?string
+    public function getNom(): string
     {
         return $this->nom;
     }
@@ -51,7 +45,7 @@ class Utilisateur
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getPrenom(): string
     {
         return $this->prenom;
     }
@@ -62,7 +56,7 @@ class Utilisateur
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -73,7 +67,7 @@ class Utilisateur
         return $this;
     }
 
-    public function getMotDePasse(): ?string
+    public function getMotDePasse(): string
     {
         return $this->motDePasse;
     }
@@ -84,36 +78,32 @@ class Utilisateur
         return $this;
     }
 
-    public function getRole(): ?Rôle
-    {
-        return $this->role;
-    }
-
-    public function setRole(?Rôle $role): self
-    {
-        $this->role = $role;
-        return $this;
-    }
-
-    public function getDateInscription(): ?\DateTimeInterface
+    public function getDateInscription(): \DateTime
     {
         return $this->dateInscription;
     }
 
-    public function setDateInscription(\DateTimeInterface $dateInscription): self
+    public function setDateInscription(\DateTime $dateInscription): self
     {
         $this->dateInscription = $dateInscription;
         return $this;
     }
 
-    public function getStatut(): ?string
+    // Methods
+    public function authentifier(): bool
     {
-        return $this->statut;
+        // Logic for authenticating the user
+        return true;
     }
 
-    public function setStatut(string $statut): self
+    public function mettreAJourProfil(): void
     {
-        $this->statut = $statut;
-        return $this;
+        // Logic for updating the user profile
+    }
+
+    public function changerMotDePasse(string $nouveauMotDePasse): void
+    {
+        $this->motDePasse = $nouveauMotDePasse;
+        // Additional logic for password change
     }
 }
